@@ -1,29 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
 
-    <meta
-        name="theme-color"
-        content="#080B18"
-    >
-
     <title>AskOra Admin</title>
 
     <style>
-        :root {
-            --space: #080B18;
-            --midnight: #10152B;
-            --blue: #3B82F6;
-            --violet: #7C3AED;
-            --white: #F5F7FF;
-            --gray: #9CA3AF;
-            --border: rgba(255,255,255,.09);
-        }
 
         * {
             box-sizing: border-box;
@@ -32,8 +20,8 @@
         body {
             margin: 0;
             min-height: 100vh;
-            background: var(--space);
-            color: var(--white);
+            background: #080B18;
+            color: #F5F7FF;
             font-family:
                 Inter,
                 system-ui,
@@ -43,62 +31,78 @@
                 sans-serif;
         }
 
+        .page {
+            max-width: 1100px;
+            margin: auto;
+            padding: 25px;
+        }
+
         .header {
-            height: 72px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 24px;
-            border-bottom: 1px solid var(--border);
-            background: rgba(16,21,43,.8);
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-weight: 800;
-            font-size: 20px;
+            gap: 11px;
         }
 
         .logo {
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             display: grid;
             place-items: center;
-            border-radius: 12px;
+            border-radius: 13px;
+            font-weight: 900;
+            font-size: 21px;
             background:
                 linear-gradient(
                     135deg,
-                    var(--blue),
-                    var(--violet)
+                    #3B82F6,
+                    #7C3AED
                 );
-            font-size: 23px;
         }
 
-        .back {
+        .brand strong {
+            display: block;
+            font-size: 18px;
+        }
+
+        .brand small {
+            color: #8D96AA;
+            font-size: 11px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .button {
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 9px;
+            padding: 9px 12px;
+            background: #10152B;
+            color: #CBD5E1;
+        }
+
+        .button:hover {
+            background: #171E38;
             color: white;
-            text-decoration: none;
-            border: 1px solid var(--border);
-            background: rgba(255,255,255,.04);
-            padding: 9px 14px;
-            border-radius: 10px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 28px 20px;
         }
 
         h1 {
-            margin: 0 0 8px;
+            margin: 0 0 7px;
+            font-size: 28px;
         }
 
-        .subtitle {
-            color: var(--gray);
-            margin-bottom: 26px;
+        .description {
+            margin: 0 0 25px;
+            color: #8D96AA;
         }
 
         .stats {
@@ -108,230 +112,191 @@
             gap: 14px;
         }
 
-        .stat {
-            padding: 20px;
-            border: 1px solid var(--border);
-            border-radius: 17px;
-            background: rgba(255,255,255,.04);
+        .card {
+            padding: 22px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,.07);
+            background: #10152B;
         }
 
-        .stat-label {
-            color: var(--gray);
-            font-size: 13px;
+        .card-label {
+            color: #8D96AA;
+            font-size: 12px;
         }
 
-        .stat-value {
-            margin-top: 9px;
+        .card-value {
+            margin-top: 10px;
             font-size: 30px;
             font-weight: 800;
         }
 
-        .panel {
-            margin-top: 24px;
-            border: 1px solid var(--border);
-            border-radius: 17px;
-            overflow: hidden;
-            background: rgba(255,255,255,.035);
-        }
-
-        .panel-title {
-            padding: 17px 18px;
-            border-bottom: 1px solid var(--border);
-            font-weight: 700;
-        }
-
-        .table-wrap {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            padding: 13px 16px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-            font-size: 13px;
-            white-space: nowrap;
-        }
-
-        th {
-            color: var(--gray);
-            font-weight: 600;
-        }
-
-        .error {
-            color: #ff8d8d;
-            margin-top: 20px;
+        .loading {
+            color: #8D96AA;
         }
 
         @media (max-width: 700px) {
 
-            .stats {
-                grid-template-columns:
-                    repeat(2, minmax(0, 1fr));
+            .page {
+                padding: 18px;
             }
 
             .header {
-                padding: 0 14px;
+                align-items: flex-start;
+                flex-direction: column;
             }
 
-            .container {
-                padding: 22px 12px;
+            .stats {
+                grid-template-columns: 1fr;
             }
+
         }
+
     </style>
+
 </head>
 
 <body>
 
-<header class="header">
+<div class="page">
 
-    <div class="brand">
-        <div class="logo">A</div>
-        AskOra Admin
-    </div>
+    <header class="header">
 
-    <a
-        href="/"
-        class="back"
-    >
-        Back to AskOra
-    </a>
+        <div class="brand">
 
-</header>
+            <div class="logo">A</div>
 
-<main class="container">
+            <div>
+                <strong>AskOra Admin</strong>
+                <small>Dashboard</small>
+            </div>
+
+        </div>
+
+        <div class="actions">
+
+            <button
+                class="button"
+                onclick="window.location.href='/'"
+            >
+                ← AskOra
+            </button>
+
+            <button
+                class="button"
+                onclick="logout()"
+            >
+                Log out
+            </button>
+
+        </div>
+
+    </header>
+
 
     <h1>Dashboard</h1>
 
-    <div class="subtitle">
-        AskOra platform statistics
+    <p class="description">
+        Overview of your AskOra website.
+    </p>
+
+
+    <div class="stats">
+
+        <div class="card">
+            <div class="card-label">
+                Total Users
+            </div>
+
+            <div
+                class="card-value"
+                id="totalUsers"
+            >
+                <span class="loading">...</span>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-label">
+                Active Users Today
+            </div>
+
+            <div
+                class="card-value"
+                id="activeUsers"
+            >
+                <span class="loading">...</span>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-label">
+                Total Chats
+            </div>
+
+            <div
+                class="card-value"
+                id="totalChats"
+            >
+                <span class="loading">...</span>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-label">
+                Total Questions
+            </div>
+
+            <div
+                class="card-value"
+                id="totalQuestions"
+            >
+                <span class="loading">...</span>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-label">
+                Voice Requests
+            </div>
+
+            <div
+                class="card-value"
+                id="voiceRequests"
+            >
+                <span class="loading">...</span>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-label">
+                New Users Today
+            </div>
+
+            <div
+                class="card-value"
+                id="newUsers"
+            >
+                <span class="loading">...</span>
+            </div>
+        </div>
+
     </div>
 
-    <section class="stats">
+</div>
 
-        <div class="stat">
-            <div class="stat-label">
-                Total users
-            </div>
-
-            <div
-                id="totalUsers"
-                class="stat-value"
-            >
-                —
-            </div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-label">
-                Users today
-            </div>
-
-            <div
-                id="usersToday"
-                class="stat-value"
-            >
-                —
-            </div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-label">
-                Active today
-            </div>
-
-            <div
-                id="activeToday"
-                class="stat-value"
-            >
-                —
-            </div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-label">
-                Total chats
-            </div>
-
-            <div
-                id="totalChats"
-                class="stat-value"
-            >
-                —
-            </div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-label">
-                Questions
-            </div>
-
-            <div
-                id="totalQuestions"
-                class="stat-value"
-            >
-                —
-            </div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-label">
-                Voice requests
-            </div>
-
-            <div
-                id="voiceRequests"
-                class="stat-value"
-            >
-                —
-            </div>
-        </div>
-
-    </section>
-
-    <section class="panel">
-
-        <div class="panel-title">
-            Recent users
-        </div>
-
-        <div class="table-wrap">
-
-            <table>
-
-                <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Joined</th>
-                        <th>Last seen</th>
-                    </tr>
-                </thead>
-
-                <tbody id="usersTable">
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </section>
-
-    <div
-        id="error"
-        class="error"
-    ></div>
-
-</main>
 
 <script>
 
-async function loadDashboard() {
+const CSRF =
+    {{ (csrf_token or "")|tojson }};
+
+
+async function loadStats() {
 
     try {
 
@@ -344,110 +309,79 @@ async function loadDashboard() {
             await response.json();
 
         if (!data.ok) {
-            document.getElementById(
-                "error"
-            ).textContent =
+
+            alert(
                 data.error ||
-                "Unable to load dashboard.";
+                "Unable to load statistics."
+            );
 
             return;
         }
 
-        const stats =
-            data.stats;
-
         document.getElementById(
             "totalUsers"
         ).textContent =
-            stats.total_users;
+            data.total_users;
 
         document.getElementById(
-            "usersToday"
+            "activeUsers"
         ).textContent =
-            stats.users_today;
-
-        document.getElementById(
-            "activeToday"
-        ).textContent =
-            stats.active_today;
+            data.active_users_today;
 
         document.getElementById(
             "totalChats"
         ).textContent =
-            stats.total_chats;
+            data.total_chats;
 
         document.getElementById(
             "totalQuestions"
         ).textContent =
-            stats.total_questions;
+            data.total_questions;
 
         document.getElementById(
             "voiceRequests"
         ).textContent =
-            stats.voice_requests;
-
-        const table =
-            document.getElementById(
-                "usersTable"
-            );
-
-        table.innerHTML = "";
-
-        (data.recent_users || [])
-            .forEach(user => {
-
-                const row =
-                    document.createElement(
-                        "tr"
-                    );
-
-                const joined =
-                    new Date(
-                        user.first_seen
-                    ).toLocaleString();
-
-                const lastSeen =
-                    new Date(
-                        user.last_seen
-                    ).toLocaleString();
-
-                row.innerHTML = `
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                `;
-
-                row.children[0]
-                    .textContent =
-                    user.username;
-
-                row.children[1]
-                    .textContent =
-                    user.email;
-
-                row.children[2]
-                    .textContent =
-                    joined;
-
-                row.children[3]
-                    .textContent =
-                    lastSeen;
-
-                table.appendChild(row);
-            });
-
-    } catch {
+            data.voice_requests;
 
         document.getElementById(
-            "error"
+            "newUsers"
         ).textContent =
-            "Unable to load dashboard.";
+            data.new_users_today;
 
+    } catch (error) {
+
+        alert(
+            "Could not load admin statistics."
+        );
     }
 }
 
-loadDashboard();
+
+async function logout() {
+
+    const response =
+        await fetch(
+            "/logout",
+            {
+                method: "POST",
+                headers: {
+                    "X-CSRF-Token":
+                        CSRF
+                }
+            }
+        );
+
+    const data =
+        await response.json();
+
+    if (data.ok) {
+        window.location.href =
+            "/login";
+    }
+}
+
+
+loadStats();
 
 </script>
 
